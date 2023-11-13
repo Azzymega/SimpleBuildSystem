@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Assembly>
+    <AssemblyName>
+        Test
+    </AssemblyName>
+
+    <AssemblyType>
+        DLL
+    </AssemblyType>
+
+    <Sources>
+        1.jsl,
+        2.jsl,
+        3.jsl,
+    </Sources>
+
+    <CompilerLocation>
+        cilASM.exe
+    </CompilerLocation>
+
+    <CompilerFlags>
+        Debug
+    </CompilerFlags>
+
+    <AssemblyOutputLocation>
+
+    </AssemblyOutputLocation>
+</Assembly>

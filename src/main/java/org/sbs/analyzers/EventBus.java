@@ -1,0 +1,9 @@
+package org.sbs.analyzers;
+
+public class EventBus implements IEventConflict<EventBus,AnalyzeEvent> {
+    @Override
+    public EventBus EventResolve(AnalyzeEvent Object) {
+        System.out.println(Object.getTextEvent());
+        return null;
+    }
+}
