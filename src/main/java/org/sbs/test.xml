@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Assembly>
+
     <AssemblyName>
         Test
     </AssemblyName>
@@ -9,15 +10,19 @@
     </AssemblyType>
 
     <Sources>
+
         <Source>
             1.jsl
         </Source>
+
         <Source>
             2.jsl
         </Source>
+
         <Source>
             3.jsl
         </Source>
+
     </Sources>
 
     <CompilerLocation>
@@ -31,4 +36,5 @@
     <AssemblyOutputLocation>
 
     </AssemblyOutputLocation>
+
 </Assembly>

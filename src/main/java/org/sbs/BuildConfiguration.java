@@ -1,5 +1,7 @@
 package org.sbs;
 
+import org.sbs.xml.XML;
+
 import java.util.ArrayList;
 
 public class BuildConfiguration {
@@ -8,6 +10,7 @@ public class BuildConfiguration {
     private ArrayList<Token> tokens;
     private ArrayList<String> words;
     private ArrayList<Token> tree;
+    private XML xml;
     public BuildConfiguration(String diskLocation) {
         this.data = new ArrayList<>();
         this.words = new ArrayList<>();
@@ -54,5 +57,13 @@ public class BuildConfiguration {
 
     public void setTree(ArrayList<Token> tree) {
         this.tree = tree;
+    }
+
+    public XML getXml() {
+        return xml;
+    }
+
+    public void setXml(XML xml) {
+        this.xml = xml;
     }
 }
