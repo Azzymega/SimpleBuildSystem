@@ -7,5 +7,5 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public abstract class Part {
-    public abstract boolean IsWork(Stack<Token> tokens, Token token);
+    public abstract Token IsWork(ArrayList<Token> tokens);
 }

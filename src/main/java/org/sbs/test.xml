@@ -9,9 +9,15 @@
     </AssemblyType>
 
     <Sources>
-        1.jsl,
-        2.jsl,
-        3.jsl,
+        <Source>
+            1.jsl
+        </Source>
+        <Source>
+            2.jsl
+        </Source>
+        <Source>
+            3.jsl
+        </Source>
     </Sources>
 
     <CompilerLocation>

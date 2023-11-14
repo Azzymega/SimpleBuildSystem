@@ -3,35 +3,34 @@ package org.sbs.wrappers;
 import org.sbs.Token;
 import org.sbs.TokenType;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Stack;
 
 public class DeclStart extends Part{
     @Override
-    public boolean IsWork(Stack<Token> tokens, Token token) {
-        token = new Token("DefinitionHeader", TokenType.DefinitionHeader);
+    public Token IsWork(ArrayList<Token> tokens) {
+        Token token = new Token("DefinitionHeader", TokenType.DefinitionHeader);
         try {
-            if (tokens.peek().getType() != TokenType.EndDeclaration) {
-                return false;
+            if (tokens.get(tokens.size()-1).getType() != TokenType.EndDeclaration) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.DeclarationIdentifier) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-1));
+            if (tokens.get(tokens.size()-2).getType() != TokenType.DeclarationIdentifier) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.StartDeclaration) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-2));
+            if (tokens.get(tokens.size()-3).getType() != TokenType.StartDeclaration) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
+            token.getTokens().add(tokens.get(tokens.size()-3));
         }
         catch (Exception ex) {
-            return false;
+            return null;
         }
-        Collections.reverse(token.getTokens());
-        tokens.push(token);
-        return true;
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        return token;
     }
 }

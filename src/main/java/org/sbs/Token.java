@@ -16,7 +16,9 @@ public class Token {
         this.value = value;
         this.type = type;
     }
+    public Token() {
 
+    }
     public TokenType getType() {
         return type;
     }

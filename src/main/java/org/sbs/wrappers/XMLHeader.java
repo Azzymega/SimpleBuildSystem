@@ -11,40 +11,38 @@ import java.util.Stack;
 public class XMLHeader extends Part{
 
     @Override
-    public boolean IsWork(Stack<Token> tokens, Token token) {
-        token = new Token("Header",TokenType.XMLHeader);
+    public Token IsWork(ArrayList<Token> tokens) {
+        Token token = new Token("",TokenType.XMLHeader);
         try {
-            if (tokens.peek().getType() != TokenType.EndDeclaration) {
-                return false;
+            if (tokens.get(tokens.size()-1).getType() != TokenType.EndDeclaration) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.Encoding) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-1));
+            if (tokens.get(tokens.size()-2).getType() != TokenType.Encoding) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.Version) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-2));
+            if (tokens.get(tokens.size()-3).getType() != TokenType.Version) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.XML) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-3));
+            if (tokens.get(tokens.size()-4).getType() != TokenType.XML) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
-            if (tokens.peek().getType() != TokenType.StartDeclaration) {
-                return false;
+            token.getTokens().add(tokens.get(tokens.size()-4));
+            if (tokens.get(tokens.size()-5).getType() != TokenType.StartDeclaration) {
+                return null;
             }
-            token.getTokens().add(tokens.peek());
-            tokens.pop();
+            token.getTokens().add(tokens.get(tokens.size()-5));
         }
         catch (Exception ex) {
-            return false;
+            return null;
         }
-        Collections.reverse(token.getTokens());
-        tokens.push(token);
-        return true;
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        tokens.remove(tokens.size()-1);
+        return token;
     }
 }
