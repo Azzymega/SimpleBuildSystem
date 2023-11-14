@@ -1,16 +1,23 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs.analyzers;
 
 import org.sbs.BuildConfiguration;
 import org.sbs.Token;
-import org.sbs.TokenType;
 import org.sbs.wrappers.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
 
 public class StackMachine implements IAnalyzeConflict<StackMachine, BuildConfiguration> {
-    private ArrayList<Part> parts = new ArrayList<>();
+    private final ArrayList<Part> parts = new ArrayList<>();
     public StackMachine() {
         parts.add(new XMLHeader());
         parts.add(new DeclEnd());
@@ -21,7 +28,7 @@ public class StackMachine implements IAnalyzeConflict<StackMachine, BuildConfigu
     @Override
     public StackMachine AnalyzeResolve(BuildConfiguration Object) {
         ArrayList<Token> tokens = new ArrayList<>();
-        ArrayList<Token> clone = new ArrayList<>();
+        ArrayList<Token> clone;
         for (Token tkn : Object.getTokens()) {
             tokens.add(tkn);
             clone = (ArrayList<Token>) tokens.clone();

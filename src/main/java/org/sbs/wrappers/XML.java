@@ -1,18 +1,25 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs.wrappers;
 
 import org.sbs.Token;
 import org.sbs.TokenType;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
 
 public class XML extends Part {
 
     @Override
     public Token IsWork(ArrayList<Token> tokens) {
-        Token token = new Token();
-        token = new Token("XML", TokenType.XMLFile);
+        Token token = new Token("XML", TokenType.XMLFile);
         try {
             if (tokens.get(tokens.size()-1).getType() != TokenType.Block) {
                 return null;

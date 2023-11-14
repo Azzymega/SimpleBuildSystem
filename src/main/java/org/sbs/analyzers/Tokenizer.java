@@ -1,8 +1,20 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs.analyzers;
 
 import org.sbs.BuildConfiguration;
 import org.sbs.Token;
 import org.sbs.TokenType;
+
+import java.util.Objects;
 
 public class Tokenizer implements IAnalyzeConflict<Tokenizer, BuildConfiguration> {
 
@@ -10,27 +22,19 @@ public class Tokenizer implements IAnalyzeConflict<Tokenizer, BuildConfiguration
     public Tokenizer AnalyzeResolve(BuildConfiguration Object) {
         for (int x = 0; x < Object.getWords().size(); x++) {
             switch (Object.getWords().get(x)) {
-                case "<" -> {
-                    Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.StartDeclaration));
-                }
+                case "<" -> Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.StartDeclaration));
                 case ">" -> {
-                    if (Object.getWords().get(x - 2) == "</") {
+                    if (Objects.equals(Object.getWords().get(x - 2), "</")) {
                         Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.EndEndDeclaration));
                     } else {
                         Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.EndDeclaration));
                     }
                 }
-                case "?xml" -> {
-                    Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.XML));
-                }
+                case "?xml" -> Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.XML));
                 case "?" -> {
                 }
-                case "," -> {
-                    Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.Comma));
-                }
-                case "</" -> {
-                    Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.StartEndDeclaration));
-                }
+                case "," -> Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.Comma));
+                case "</" -> Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.StartEndDeclaration));
                 default -> {
                     if (Object.getTokens().get(Object.getTokens().size() - 1).getType() == TokenType.StartDeclaration) {
                         Object.getTokens().add(new Token(Object.getWords().get(x), TokenType.DeclarationIdentifier));

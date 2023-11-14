@@ -1,3 +1,13 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs;
 
 import java.io.FileNotFoundException;
@@ -20,7 +30,7 @@ public class XMLLoader implements ILoadConflict<XMLLoader,BuildConfiguration> {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            Object.getData().add(new Character((char) c));
+            Object.getData().add((char) c);
         }
         try {
             reader.close();

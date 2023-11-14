@@ -1,11 +1,20 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs.xml;
 
 import org.sbs.BuildConfiguration;
 import org.sbs.analyzers.IAnalyzeConflict;
-import org.sbs.wrappers.XMLHeader;
 
 public class XMLProducerMachine implements IAnalyzeConflict<XMLProducerMachine,BuildConfiguration> {
-    private BlockProducingMachine blockProducingMachine = new BlockProducingMachine();
+    private final BlockProducingMachine blockProducingMachine = new BlockProducingMachine();
     @Override
     public XMLProducerMachine AnalyzeResolve(BuildConfiguration Object) {
         XMLMetadata header = new XMLMetadata(Object.getTree().get(0).getTokens().get(1).getTokens().get(2).getValue(),

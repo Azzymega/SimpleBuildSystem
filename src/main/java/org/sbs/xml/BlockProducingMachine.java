@@ -1,11 +1,19 @@
+/*
+ *
+ *  *
+ *  *  * PROJECT:    Simple Build System
+ *  *  * LICENSE:     GPL - See COPYING in the top level directory
+ *  *  * PROGRAMMER:  Maltsev Daniil <brickexberiment@lenta.ru>
+ *  *
+ *
+ */
+
 package org.sbs.xml;
 
 import org.sbs.BuildConfiguration;
 import org.sbs.Token;
 import org.sbs.TokenType;
 import org.sbs.analyzers.IAnalyzeConflict;
-
-import java.util.Stack;
 
 public class BlockProducingMachine implements IAnalyzeConflict<BlockProducingMachine, BuildConfiguration>,
 IProduceConflict<XMLArray,Token> {
@@ -25,8 +33,10 @@ IProduceConflict<XMLArray,Token> {
             } else if (init.getType() == TokenType.DefinitionHeader) {
                 return newArr;
             } else if (init.getType() == TokenType.Identifier) {
+                assert newArr != null;
                 newArr.getObjects().add(new XMLObject(init.getValue()));
             } else if (init.getType() == TokenType.Block) {
+                assert newArr != null;
                 newArr.getArrays().add(ProduceResolve(init));
             }
         }
